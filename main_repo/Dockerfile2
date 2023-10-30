@@ -1,0 +1,22 @@
+FROM python:3.8
+
+RUN apt update && apt install -y \
+    git  \
+    g++  \
+    make  \
+    cmake  \
+    python3-dev  \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY ./requirements.txt ./
+RUN  pip install -r requirements.txt --no-cache-dir
+
+COPY ./images ./images
+COPY ./lib/just_library.cpython-38-x86_64-linux-gnu.so ./lib/just_library.cpython-38-x86_64-linux-gnu.so
+COPY ./squeezenet_v1.1.caffemodel ./squeezenet_v1.1.prototxt
+COPY ./squeezenet_v1.1.prototxt ./squeezenet_v1.1.prototxt
+COPY ./main.py ./main.py
+
+CMD uvicorn main:app --reload
