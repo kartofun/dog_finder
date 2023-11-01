@@ -1,8 +1,7 @@
 wheel
-opencv-python==4.8.0.76
-pytest==7.4.0
-pytest-shutil==1.7.0
-setuptools-git==1.2
-fastapi==0.45.0
-Cython==3.0.0
-uvicorn==0.23.2
+setuptools-git>=1.2
+fastapi>=0.45.0
+Cython>=3.0.0
+uvicorn>=0.17.0
+pybind11
+multipart>=0.0.1

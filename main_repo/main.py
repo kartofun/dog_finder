@@ -5,12 +5,26 @@ from fastapi import FastAPI, Response, File, UploadFile
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-app = FastAPI()
+tags_metadata = [
+    {
+        "name": "find_dog",
+        "description": "Распознает собаку на загруженной картинке. ",
+    }
+]
+
+app = FastAPI(openapi_tags=tags_metadata)
 
 max_size=10485760
 
-@app.post("/file/find-dog", status_code=200)
+@app.get("/")
+def read_root():
+    return {"Welcom to the dog_finder server. Try 'find_dog' in Swagger docs: http://0.0.0.0:8000/docs"}
+
+@app.post("/file/find-dog", status_code=200, tags=["find_dog"])
 def find_dog(response: Response,file_bytes: bytes = File()):
+    """
+        Метод ищет на загруженной картинке собаку, и в случае успеха возвращает 'found_dog': True
+    """
     found_dog = False 
     status = "ok"
     status_code = 200
