@@ -10,12 +10,14 @@
 
 ### Установка с помощью git
 
-* git clone https://github.com/kartofun/dog_finder
-* cd dog_finder
-* docker build . --tag dog_finder 
+* `git clone https://github.com/kartofun/dog_finder`
+* `cd dog_finder`
+* `docker build . --tag dog_finder` 
+
+
 	Этот этап может занимать довольно много времени (15-20 минут)
 
-* docker container run -p 8000:8000 --name dog_finder dog_finder
+* `docker container run -p 8000:8000 --name dog_finder dog_finder`
 
 ## Использование методов
 
